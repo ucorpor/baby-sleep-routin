@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+    <meta http-equiv="Pragma" content="no-cache"/>
+    <meta http-equiv="Expires" content="0"/>
+    <title>Режим малыша</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/index.css"/>
+  </head>
+  <body class="bg-body-tertiary">
+    <div class="container">
+      <main>
+        <div class="text-center">
+          <h3>Режим сна</h3>
+        </div>
+        <div class="row g-3">
+          <div class="col-md-10">
+            <form>
+              <div class="row g-3">
+                <label for="startH" class="form-label mb-0">Подъём</label>
+                <div class="input-group">
+                  <select class="col-6 form-select form-select-lg mb-3" id="startH"></select>
+                  <select class="col-6 form-select form-select-lg mb-3" id="startM"></select>
+                </div>
+                <label for="wakeH" class="form-label mb-0">Бодрствование</label>
+                <div class="input-group">
+                  <select class="col-6 form-select form-select-lg mb-3" id="wakeH"></select>
+                  <select class="col-6 form-select form-select-lg mb-3" id="wakeM"></select>
+                </div>
+                <label for="offsetH" class="form-label mb-0">Наращивание</label>
+                <div class="input-group">
+                  <select class="col-6 form-select form-select-lg mb-3" id="offsetH"></select>
+                  <select class="col-6 form-select form-select-lg mb-3" id="offsetM"></select>
+                </div>
+                <div>
+                  <button class="w-100 btn btn-success btn-lg" id="calc">Рассчитать</button>
+                </div>
+                <div>
+                  <label for="result" class="form-label mb-0">Режим дня</label>
+                  <textarea class="form-control" id="result"></textarea>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </main>
+    </div>
+    <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="js/date-fns.min.js"></script>
+    <script type="text/javascript" src="js/index.js" defer></script>
+  </body>
+</html>
