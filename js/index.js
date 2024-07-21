@@ -61,7 +61,7 @@ function timeToMins(time) {
 function minsToTime(mins) {
   let h = Math.trunc(mins / 60);
   const m = mins - h * 60;
-  //while (h > 23) h -= 24;
+  while (h >= 24) h -= 24;
   const time = `${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}`;
   return time;
 }
