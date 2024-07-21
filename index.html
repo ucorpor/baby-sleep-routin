@@ -6,7 +6,7 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
     <meta http-equiv="Pragma" content="no-cache"/>
     <meta http-equiv="Expires" content="0"/>
-    <title>Режим малыша</title>
+    <title>😴Режим малыша</title>
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" href="css/index.css"/>
   </head>
@@ -14,33 +14,56 @@
     <div class="container">
       <main>
         <div class="text-center">
-          <h3>Режим сна</h3>
+          <h3>😴Режим сна</h3>
         </div>
         <div class="row g-3">
-          <div class="col-md-10">
+          <div class="col-md-12">
             <form>
               <div class="row g-3">
-                <label for="startH" class="form-label mb-0">Подъём</label>
+                <label for="start-h" class="form-label mb-0">⏰Подъём</label>
                 <div class="input-group">
-                  <select class="col-6 form-select form-select-lg mb-3" id="startH"></select>
-                  <select class="col-6 form-select form-select-lg mb-3" id="startM"></select>
+                  <select class="col-6 form-select form-select-lg mb-3" id="start-h"></select>
+                  <select class="col-6 form-select form-select-lg mb-3" id="start-m"></select>
                 </div>
-                <label for="wakeH" class="form-label mb-0">Бодрствование</label>
+                <label for="wake-h" class="form-label mb-0">👶Бодрствование</label>
                 <div class="input-group">
-                  <select class="col-6 form-select form-select-lg mb-3" id="wakeH"></select>
-                  <select class="col-6 form-select form-select-lg mb-3" id="wakeM"></select>
+                  <select class="col-6 form-select form-select-lg mb-3" id="wake-h"></select>
+                  <select class="col-6 form-select form-select-lg mb-3" id="wake-m"></select>
                 </div>
-                <label for="offsetH" class="form-label mb-0">Наращивание</label>
+                <label for="offset-h" class="form-label mb-0">⏲️Наращивание</label>
                 <div class="input-group">
-                  <select class="col-6 form-select form-select-lg mb-3" id="offsetH"></select>
-                  <select class="col-6 form-select form-select-lg mb-3" id="offsetM"></select>
+                  <select class="col-6 form-select form-select-lg mb-3" id="offset-h"></select>
+                  <select class="col-6 form-select form-select-lg mb-3" id="offset-m"></select>
                 </div>
                 <div>
-                  <button class="w-100 btn btn-success btn-lg" id="calc">Рассчитать</button>
+                <label for="day-dream-h-1" class="form-label mb-0">☀️Дневной сон</label>
+                <div class="input-group">
+                  <span class="input-group-text mb-3">1</span>
+                  <select class="col-6 form-select form-select-lg mb-3" id="day-dream-h-1"></select>
+                  <select class="col-6 form-select form-select-lg mb-3" id="day-dream-m-1"></select>
+                </div>
+                <div class="input-group">
+                  <span class="input-group-text mb-3">2</span>
+                  <select class="col-6 form-select form-select-lg mb-3" id="day-dream-h-2"></select>
+                  <select class="col-6 form-select form-select-lg mb-3" id="day-dream-m-2"></select>
+                </div>
+                <div class="input-group">
+                  <span class="input-group-text mb-3">3</span>
+                  <select class="col-6 form-select form-select-lg mb-3" id="day-dream-h-3"></select>
+                  <select class="col-6 form-select form-select-lg mb-3" id="day-dream-m-3"></select>
+                </div>
+                <div class="input-group">
+                  <span class="input-group-text mb-3">4</span>
+                  <select class="col-6 form-select form-select-lg mb-3" id="day-dream-h-4"></select>
+                  <select class="col-6 form-select form-select-lg mb-3" id="day-dream-m-4"></select>
                 </div>
                 <div>
-                  <label for="result" class="form-label mb-0">Режим дня</label>
-                  <textarea class="form-control" id="result"></textarea>
+                  <input class="w-100 btn btn-success btn-lg mb-3" type="button" value="🧮Рассчитать режим дня" id="calc-btn">
+                </div>
+                <div class="mb-3">
+                  <label for="result" class="form-label mb-0">📊Режим дня</label>
+                  <input class="btn btn-outline-primary btn-sm mb-1 mx-1" type="button" value="📋Копировать" id="copy-btn">
+                  <textarea class="form-control" id="output"></textarea>
                 </div>
               </div>
             </form>

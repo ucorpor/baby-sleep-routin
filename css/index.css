@@ -79,6 +79,6 @@
   display: block !important;
 }
 
-#result {
-  min-height: 300px;
+#output {
+  min-height: 250px;
 }
