@@ -9,6 +9,9 @@ initWatch("day-dream-h-4", "day-dream-m-4", "00:00");
 const calcBtn = document.getElementById("calc-btn");
 calcBtn.addEventListener("click", (e) => calc());
 
+const copyBtn = document.getElementById("copy-btn");
+copyBtn.addEventListener("click", (e) => copy());
+
 function initWatch(hoursId, minsId, time = "00:00") {
   const hours = document.getElementById(hoursId);
   const mins = document.getElementById(minsId);
@@ -90,4 +93,17 @@ function calc() {
   time = time + wake + curOffset;
   result = `${result}${minsToTime(time)}  — Отбой\n`;
   document.getElementById("output").value = result;
+}
+
+async function copy() {
+  const button = document.getElementById("copy-btn");
+  const spinner = document.getElementById("copy-spinner");
+  button.disabled = true;
+  spinner.classList.remove("invisible");
+
+  const result = document.getElementById("output").value;
+  await navigator.clipboard.writeText(result);
+
+  spinner.classList.add("invisible");
+  button.disabled = false;
 }
