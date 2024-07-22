@@ -57,9 +57,11 @@ function save() {
 }
 
 function getTime(hoursId, minsId) {
-  const hoursList = document.getElementById(hoursId).value;
-  const minsList = document.getElementById(minsId).value;
-  const time = `${hoursList}:${minsList}`;
+  const hoursList = document.getElementById(hoursId);
+  const minsList = document.getElementById(minsId);
+  const h = String(hoursList.value).padStart(2, "0");
+  const m = String(minsList.value).padStart(2, "0");
+  const time = `${h}:${m}`;
   return time;
 }
 
