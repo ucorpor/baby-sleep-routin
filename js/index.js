@@ -67,6 +67,9 @@ function minsToTime(mins) {
 }
 
 function calc() {
+  const button = document.getElementById("calc-btn");
+  button.disabled = true;
+
   const start = getMins("start-h", "start-m");
   const wake = getMins("wake-h", "wake-m");
   const offset = getMins("offset-h", "offset-m");
@@ -95,17 +98,13 @@ function calc() {
   time = time + wake + curOffset;
   result = `${result}${minsToTime(time)}  — Отбой\n`;
   document.getElementById("output").value = result;
+  button.disabled = false;
 }
 
 async function copy() {
   const button = document.getElementById("copy-btn");
-  const spinner = document.getElementById("copy-spinner");
   button.disabled = true;
-  spinner.classList.remove("invisible");
-
   const result = document.getElementById("output").value;
   await navigator.clipboard.writeText(result);
-
-  spinner.classList.add("invisible");
   button.disabled = false;
 }
