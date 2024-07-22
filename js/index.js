@@ -12,25 +12,6 @@ calcBtn.addEventListener("click", (e) => calc());
 const copyBtn = document.getElementById("copy-btn");
 copyBtn.addEventListener("click", (e) => copy());
 
-function initWatch(hoursId, minsId, time = "00:00") {
-  const hours = document.getElementById(hoursId);
-  const mins = document.getElementById(minsId);
-  hours.length = 0;
-  mins.length = 0;
-
-  for (var i = 0; i < 24; i++) {
-    const option = new Option(String(i).padStart(2, "0"), i);
-    hours.add(option);
-  }
-
-  for (var i = 0; i < 60; i++) {
-    const option = new Option(String(i).padStart(2, "0"), i);
-    mins.add(option);
-  }
-
-  setTime(hoursId, minsId, timeToMins(time));
-}
-
 function getMins(hoursId, minsId) {
   const hoursList = document.getElementById(hoursId).value;
   const minsList = document.getElementById(minsId).value;
