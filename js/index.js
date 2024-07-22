@@ -70,8 +70,10 @@ function calc() {
   const start = getMins("start-h", "start-m");
   const wake = getMins("wake-h", "wake-m");
   const offset = getMins("offset-h", "offset-m");
+
   const dayDreams = [];
-  for (let i = 1; i <= 4; i++) {
+  const dayDreamsCount = document.querySelectorAll("[id^='day-dream-h-']").length;
+  for (let i = 1; i <= dayDreamsCount; i++) {
     const dayDreamMins = getMins(`day-dream-h-${i}`, `day-dream-m-${i}`);
     dayDreams.push(dayDreamMins);
   }
