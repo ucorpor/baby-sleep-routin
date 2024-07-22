@@ -1,28 +1,78 @@
-setTime("start-h", "start-m", timeToMins("07:00"));
-setTime("wake-h", "wake-m", timeToMins("02:00"));
-setTime("offset-h", "offset-m", timeToMins("00:15"));
-setTime("day-dream-h-1", "day-dream-m-1", timeToMins("01:30"));
-setTime("day-dream-h-2", "day-dream-m-2", timeToMins("00:00"));
-setTime("day-dream-h-3", "day-dream-m-3", timeToMins("00:00"));
-setTime("day-dream-h-4", "day-dream-m-4", timeToMins("00:00"));
+init();
 
-const calcBtn = document.getElementById("calc-btn");
-calcBtn.addEventListener("click", (e) => calc());
+function init() {
+  const calcBtn = document.getElementById("calc-btn");
+  calcBtn.addEventListener("click", (e) => calc());
 
-const copyBtn = document.getElementById("copy-btn");
-copyBtn.addEventListener("click", (e) => copy());
+  const copyBtn = document.getElementById("copy-btn");
+  copyBtn.addEventListener("click", (e) => copy());
 
-function getMins(hoursId, minsId) {
+  load();
+}
+
+function load() {
+  // get
+  let start = localStorage.getItem("start");
+  let wake = localStorage.getItem("wake");
+  let offset = localStorage.getItem("offset");
+
+  const dayDreams = [];
+  const dayDreamCount = getDayDreamCount();
+  for (let i = 1; i <= dayDreamCount; i++) {
+    dayDreams[i] = localStorage.getItem(`day-dream-${i}`);
+  }
+
+  // defaults
+  if (!start) start = "07:00";
+  if (!wake) wake = "02:00";
+  if (!offset) offset = "00:15";
+  if (!dayDreams[1]) dayDreams[1] = "01:30";
+  for (let i = 2; i <= dayDreamCount; i++) {
+    if (!dayDreams[i]) dayDreams[i] = "00:00";
+  }
+
+  // set
+  setTime("start-h", "start-m", start);
+  setTime("wake-h", "wake-m", wake);
+  setTime("offset-h", "offset-m", offset);
+  for (let i = 1; i <= dayDreamCount; i++) {
+    setTime(`day-dream-h-${i}`, `day-dream-m-${i}`, dayDreams[i]);
+  }
+}
+
+function save() {
+  const start = getTime("start-h", "start-m");
+  const wake = getTime("wake-h", "wake-m");
+  const offset = getTime("offset-h", "offset-m");
+
+  localStorage.setItem("start", start);
+  localStorage.setItem("wake", wake);
+  localStorage.setItem("offset", offset);
+
+  const dayDreamCount = getDayDreamCount();
+  for (let i = 1; i <= dayDreamCount; i++) {
+    const dayDreamTime = getTime(`day-dream-h-${i}`, `day-dream-m-${i}`);
+    localStorage.setItem(`day-dream-${i}`, dayDreamTime);
+  }
+}
+
+function getTime(hoursId, minsId) {
   const hoursList = document.getElementById(hoursId).value;
   const minsList = document.getElementById(minsId).value;
   const time = `${hoursList}:${minsList}`;
+  return time;
+}
+
+function getMins(hoursId, minsId) {
+  const time = getTime(hoursId, minsId);
   const mins = timeToMins(time);
   return mins;
 }
 
-function setTime(hoursId, minsId, mins) {
-  const h = Math.trunc(mins / 60);
-  const m = mins - h * 60;
+function setTime(hoursId, minsId, time) {
+  const timeArray = time.split(":");
+  const h = timeArray[0];
+  const m = timeArray[1];
 
   const hoursList = document.getElementById(hoursId);
   const minsList = document.getElementById(minsId);
@@ -56,8 +106,8 @@ function calc() {
   const offset = getMins("offset-h", "offset-m");
 
   const dayDreams = [];
-  const dayDreamsCount = document.querySelectorAll("[id^='day-dream-h-']").length;
-  for (let i = 1; i <= dayDreamsCount; i++) {
+  const dayDreamCount = getDayDreamCount();
+  for (let i = 1; i <= dayDreamCount; i++) {
     const dayDreamMins = getMins(`day-dream-h-${i}`, `day-dream-m-${i}`);
     dayDreams.push(dayDreamMins);
   }
@@ -79,6 +129,8 @@ function calc() {
   time = time + wake + curOffset;
   result = `${result}${minsToTime(time)}  — Отбой\n`;
   document.getElementById("output").value = result;
+  save();
+
   button.disabled = false;
 }
 
@@ -88,4 +140,9 @@ async function copy() {
   const result = document.getElementById("output").value;
   await navigator.clipboard.writeText(result);
   button.disabled = false;
+}
+
+function getDayDreamCount() {
+  const { length } = document.querySelectorAll("[id^='day-dream-h-']");
+  return length;
 }
