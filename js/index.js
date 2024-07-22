@@ -1,10 +1,10 @@
-initWatch("start-h", "start-m", "07:00");
-initWatch("wake-h", "wake-m", "02:00");
-initWatch("offset-h", "offset-m", "00:15");
-initWatch("day-dream-h-1", "day-dream-m-1", "01:30");
-initWatch("day-dream-h-2", "day-dream-m-2", "00:00");
-initWatch("day-dream-h-3", "day-dream-m-3", "00:00");
-initWatch("day-dream-h-4", "day-dream-m-4", "00:00");
+setTime("start-h", "start-m", timeToMins("07:00"));
+setTime("wake-h", "wake-m", timeToMins("02:00"));
+setTime("offset-h", "offset-m", timeToMins("00:15"));
+setTime("day-dream-h-1", "day-dream-m-1", timeToMins("01:30"));
+setTime("day-dream-h-2", "day-dream-m-2", timeToMins("00:00"));
+setTime("day-dream-h-3", "day-dream-m-3", timeToMins("00:00"));
+setTime("day-dream-h-4", "day-dream-m-4", timeToMins("00:00"));
 
 const calcBtn = document.getElementById("calc-btn");
 calcBtn.addEventListener("click", (e) => calc());
