@@ -116,20 +116,22 @@ function calc() {
 
   let curOffset = 0;
   let time = start;
-  let result = `${minsToTime(time)} — Подъём\n`;
+  let result = `${minsToTime(time)} — подъём\n`;
   for (let i = 0; i < dayDreams.length; i++) {
     const dayDream = dayDreams[i];
     if (dayDream > 0) {
       const dreamStart = time + wake + curOffset;
       const dreamEnd = dreamStart + dayDream;
+      result = `${result}${minsToTime(time)}-${minsToTime(dreamStart)} — бодрствование\n`;
       result = `${result}${minsToTime(dreamStart)}-${minsToTime(dreamEnd)} — сон №${i + 1}\n`;
       curOffset += offset;
       time = dreamEnd;
     }
   }
 
-  time = time + wake + curOffset;
-  result = `${result}${minsToTime(time)}  — Отбой\n`;
+  end = time + wake + curOffset;
+  result = `${result}${minsToTime(time)}-${minsToTime(end)} — бодрствование\n`;
+  result = `${result}${minsToTime(end)}  — отбой\n`;
   document.getElementById("output").value = result;
   save();
 
