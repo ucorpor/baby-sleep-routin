@@ -120,19 +120,17 @@ function calc() {
   for (let i = 0; i < dayDreams.length; i++) {
     const dayDream = dayDreams[i];
     if (dayDream > 0) {
-      const wakeTimeSum = wake + curOffset;
-      const dreamStart = time + wakeTimeSum;
+      const dreamStart = time + wake + curOffset;
       const dreamEnd = dreamStart + dayDream;
-      result = `${result}${minsToTime(time)}-${minsToTime(dreamStart)} — бодрствование [${minsToTime(wakeTimeSum)}]\n`;
-      result = `${result}${minsToTime(dreamStart)}-${minsToTime(dreamEnd)} — сон №${i + 1} [${minsToTime(dayDream)}]\n`;
+      result = `${result}${minsToTime(time)}-${minsToTime(dreamStart)} — бодрствование\n`;
+      result = `${result}${minsToTime(dreamStart)}-${minsToTime(dreamEnd)} — сон №${i + 1}\n`;
       curOffset += offset;
       time = dreamEnd;
     }
   }
 
-  const wakeTimeSum = wake + curOffset;
-  const end = time + wakeTimeSum;
-  result = `${result}${minsToTime(time)}-${minsToTime(end)} — бодрствование [${minsToTime(wakeTimeSum)}]\n`;
+  end = time + wake + curOffset;
+  result = `${result}${minsToTime(time)}-${minsToTime(end)} — бодрствование\n`;
   result = `${result}${minsToTime(end)}  — отбой\n`;
   document.getElementById("output").value = result;
   save();
