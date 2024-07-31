@@ -116,7 +116,7 @@ function calc() {
 
   let curOffset = 0;
   let time = start;
-  let result = `${minsToTime(time)} — Подъём\n`;
+  let result = `${minsToTime(time)} — подъём\n`;
   for (let i = 0; i < dayDreams.length; i++) {
     const dayDream = dayDreams[i];
     if (dayDream > 0) {
@@ -129,7 +129,7 @@ function calc() {
   }
 
   time = time + wake + curOffset;
-  result = `${result}${minsToTime(time)}  — Отбой\n`;
+  result = `${result}${minsToTime(time)}  — отбой\n`;
   document.getElementById("output").value = result;
   save();
 
